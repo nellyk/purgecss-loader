@@ -20,8 +20,15 @@ on:
 jobs:
   automerge:
     runs-on: ubuntu-latest
+    if: |
+            (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+            (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     steps:
-      - name: automerge
-        uses: "pascalgn/automerge-action@v0.14.2"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: 1
+          body: |
+               @dependabot merge
+          reactions: '+1'
+
