@@ -10,7 +10,7 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "daily"
-      time: "18:50"
+      time: "18:56"
       # Use Japan Standard Time (UTC +09:00)
       timezone: "Europe/London"
     target-branch: "dependabot-changes"  
